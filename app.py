@@ -59,10 +59,11 @@ st.title('Girnar Automation')
 st.header('You can upload free text column with "Remarks" name')
 
 uploaded_file = st.file_uploader("Choose a file")
-df =pd.read_excel(uploaded_file)
-df= df.astype(str)
-col = ['Sr No:', 'Product', 'SMS', 'Rating', 'Remarks','Type of lead','Mode','Cleaned_Remarks', 'Categories', 'Sub Categories','NPS CAT', 'Total Nps Score']
-df_final =pd.DataFrame(columns=col)
+if uploaded_file is not None:
+    df =pd.read_excel(uploaded_file)
+    df= df.astype(str)
+    col = ['Sr No:', 'Product', 'SMS', 'Rating', 'Remarks','Type of lead','Mode','Cleaned_Remarks', 'Categories', 'Sub Categories','NPS CAT', 'Total Nps Score']
+    df_final =pd.DataFrame(columns=col)
 
 if st.button('transformed_data'):
     df['transformed_text']=df['Remarks'].apply(transform_text)
